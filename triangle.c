@@ -12910,11 +12910,11 @@ void statistics()
 
 #ifdef TRILIBRARY
 
-void triangulate(triswitches, in, out, vorout)
-char *triswitches;
+void triangulate(char *triswitches, struct triangulateio *in, struct triangulateio *out, struct triangulateio *vorout)
+/*char *triswitches;
 struct triangulateio *in;
 struct triangulateio *out;
-struct triangulateio *vorout;
+struct triangulateio *vorout;*/
 
 #else /* not TRILIBRARY */
 
