@@ -304,6 +304,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include <math.h>
 #ifndef NO_TIMER
 #include <sys/time.h>
@@ -317,14 +318,14 @@
 /* the unpardonable sin of including stdlib.h.  Hence, malloc(), free(), and */
 /* exit() may or may not already be defined at this point.  I declare these  */
 /* functions explicitly because some non-ANSI C compilers lack stdlib.h.     */
-
+/*
 #ifndef _STDLIB_H_
 extern void *malloc();
 extern void free();
 extern void exit();
 extern double strtod();
 extern long strtol();
-#endif /* _STDLIB_H_ */
+#endif  _STDLIB_H_ */
 
 /* A few forward declarations.                                               */
 
