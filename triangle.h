@@ -275,6 +275,8 @@ struct triangulateio {
   REAL *normlist;                /* Used only with Voronoi diagram; out only */
   int numberofedges;                                             /* Out only */
 };
+
+
 void triangulate(char *triswitches, struct triangulateio *in, struct triangulateio *out, struct triangulateio *vorout);
 
 #ifdef ANSI_DECLARATORS

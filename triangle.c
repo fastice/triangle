@@ -1150,6 +1150,91 @@ int minus1mod3[3] = {2, 0, 1};
 /*  syntax()   Print list of command line switches.                          */
 /*                                                                           */
 /*****************************************************************************/
+void maketriangle(struct triedge *newtriedge);
+void makeshelle(struct edge *newedge);
+void exactinit();
+int fast_expansion_sum_zeroelim(int elen, REAL *e, int flen, REAL *f, REAL *h); /* h cannot be e or f. */
+int scale_expansion_zeroelim(int elen, REAL *e, REAL b, REAL *h);   /* e and h cannot be the same. */
+REAL estimate(int elen, REAL *e);
+REAL counterclockwiseadapt(point pa, point pb, point pc, REAL detsum);
+REAL counterclockwise(point pa, point pb, point pc);
+REAL incircleadapt(point pa, point pb, point pc, point pd, REAL permanent);
+REAL incircle(point pa, point pb,point pc, point pd);
+void triangleinit();
+unsigned long randomnation(unsigned int choices);
+void checkmesh();
+void checkdelaunay();
+void enqueuebadtri(struct triedge *instri, REAL angle, point insapex, point insorg, point insdest);
+struct badface *dequeuebadtri();
+int checkedge4encroach(struct edge *testedge);
+void testtriangle(struct triedge *testtri);
+void makepointmap();
+enum locateresult preciselocate(point searchpoint,struct triedge *searchtri);
+enum locateresult locate(point searchpoint, struct triedge *searchtri);
+void insertshelle(struct triedge *tri, int shellemark); 
+void flip(struct triedge *flipedge); 
+enum insertsiteresult insertsite(point insertpoint, struct triedge *searchtri, struct edge *splitedge, int segmentflaws, int triflaws);
+void triangulatepolygon(struct triedge *firstedge, struct triedge *lastedge, int edgecount, int doflip, int triflaws);
+void deletesite(struct triedge *deltri);
+void pointsort(point *sortarray, int arraysize);
+void pointmedian(point *sortarray, int arraysize, int median, int axis);
+void alternateaxes(point *sortarray, int arraysize, int axis);
+void mergehulls(struct triedge *farleft, struct triedge *innerleft, struct triedge *innerright, struct triedge *farright, int axis);
+void divconqrecurse(point *sortarray, int vertices, int axis, struct triedge *farleft, struct triedge *farright);
+long removeghosts(struct triedge *startghost);
+long divconqdelaunay();
+void boundingbox();
+long removebox();
+long incrementaldelaunay();
+void eventheapinsert(struct event **heap, int heapsize, struct event *newevent);
+void eventheapify(struct event **heap, int heapsize, int eventnum);
+void eventheapdelete(struct event **heap, int heapsize, int eventnum);
+void createeventheap(struct event ***eventheap, struct event **events, struct event **freeevents);
+int rightofhyperbola(struct triedge *fronttri, point newsite);
+REAL circletop(point pa, point pb, point pc, REAL ccwabc);
+void check4deadevent(struct triedge *checktri, struct event **freeevents, struct event **eventheap, int *heapsize);
+struct splaynode *splay(struct splaynode *splaytree, point searchpoint, struct triedge *searchtri);
+struct splaynode *splayinsert(struct splaynode *splayroot, struct triedge *newkey, point searchpoint);
+struct splaynode *circletopinsert(struct splaynode *splayroot, struct triedge *newkey, point pa, point pb, point pc, REAL topy);
+struct splaynode *frontlocate(struct splaynode *splayroot, struct triedge *bottommost, point searchpoint, struct triedge *searchtri, int *farright);
+long sweeplinedelaunay();
+long delaunay();
+int reconstruct(int *trianglelist, REAL *triangleattriblist, REAL *trianglearealist, int elements, 
+  int corners, int attribs, int *segmentlist, int *segmentmarkerlist, int numberofsegments);
+
+enum finddirectionresult finddirection(struct triedge *searchtri, point endpoint);
+void segmentintersection(struct triedge *splittri, struct edge *splitshelle, point endpoint2);
+int scoutsegment(struct triedge *searchtri, point endpoint2, int newmark);
+void conformingedge(point endpoint1, point endpoint2, int newmark);
+void delaunayfixup(struct triedge *fixuptri, int leftside);
+void constrainededge(struct triedge *starttri, point endpoint2, int newmark);
+void insertsegment(point endpoint1, point endpoint2, int newmark);
+void markhull();
+void infecthull();
+void plague();
+void regionplague(REAL attribute, REAL area);
+void carveholes(REAL *holelist, int holes, REAL *regionlist, int regions);
+void tallyencs();
+void precisionerror();
+void repairencs(int flaws);
+void tallyfaces();
+enum circumcenterresult findcircumcenter(point torg, point tdest, point tapex, point circumcenter, REAL *xi, REAL *eta);
+void splittriangle(struct badface *badtri);
+void enforcequality();
+void highorder();
+char *readline(char *string, FILE *infile, char *infilename);
+char *findfield(char *string);
+void finishfile(FILE *outfile, int argc, char **argv);
+void numbernodes();
+void writeelements(int **trianglelist, REAL **triangleattriblist);
+void writepoly(int **segmentlist, int **segmentmarkerlist);
+void writeedges(int **edgelist, int **edgemarkerlist);
+void writevoronoi(REAL **vpointlist, REAL **vpointattriblist, 
+    int **vpointmarkerlist, int **vedgelist, int **vedgemarkerlist, REAL **vnormlist);
+void writeneighbors(int **neighborlist);
+void quality_statistics();
+void statistics();
+
 
 #ifndef TRILIBRARY
 
