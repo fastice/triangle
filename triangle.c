@@ -1201,7 +1201,11 @@ long sweeplinedelaunay();
 long delaunay();
 int reconstruct(int *trianglelist, REAL *triangleattriblist, REAL *trianglearealist, int elements, 
   int corners, int attribs, int *segmentlist, int *segmentmarkerlist, int numberofsegments);
-
+struct splaynode *splay(struct splaynode *splaytree, point searchpoint, struct triedge *searchtri);
+void parsecommandline(int argc, char **argv);
+void printtriangle(struct triedge *t);
+void printshelle(struct edge *s);
+void poolrestart(struct memorypool *pool);
 enum finddirectionresult finddirection(struct triedge *searchtri, point endpoint);
 void segmentintersection(struct triedge *splittri, struct edge *splitshelle, point endpoint2);
 int scoutsegment(struct triedge *searchtri, point endpoint2, int newmark);
