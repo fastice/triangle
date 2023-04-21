@@ -6039,7 +6039,7 @@ void insertshelle(struct triedge *tri, int shellemark)
 /*                                                                           */
 /*****************************************************************************/
 
-void flip(struct triedge *flipedge);                    /* Handle for the triangle abc. */
+void flip(struct triedge *flipedge)                    /* Handle for the triangle abc. */
 {
   struct triedge botleft, botright;
   struct triedge topleft, topright;
@@ -8652,18 +8652,15 @@ long delaunay()
 #ifdef TRILIBRARY
 
 int reconstruct(int *trianglelist, REAL *triangleattriblist, REAL *trianglearealist, int elements, 
-  int corners, int attribs, int *segmentlist, int *segmentmarkerlist, int numberofsegments);
+  int corners, int attribs, int *segmentlist, int *segmentmarkerlist, int numberofsegments)
 
 #else /* not TRILIBRARY */
-
 long reconstruct(elefilename, areafilename, polyfilename, polyfile)
 char *elefilename;
 char *areafilename;
 char *polyfilename;
 FILE *polyfile;
-
 #endif /* not TRILIBRARY */
-
 {
 #ifdef TRILIBRARY
   int pointindex;
@@ -9379,7 +9376,7 @@ int scoutsegment(struct triedge *searchtri, point endpoint2, int newmark)
 #ifndef REDUCED
 #ifndef CDT_ONLY
 
-void conformingedge(point endpoint1, point endpoint2, int newmark);
+void conformingedge(point endpoint1, point endpoint2, int newmark)
 {
   struct triedge searchtri1, searchtri2;
   struct edge brokenshelle;
