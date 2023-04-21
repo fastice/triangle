@@ -329,8 +329,9 @@ extern long strtol();
 
 /* A few forward declarations.                                               */
 
-void poolrestart();
+
 #ifndef TRILIBRARY
+void poolrestart();
 char *readline();
 char *findfield();
 #endif /* not TRILIBRARY */
@@ -2761,9 +2762,7 @@ void internalerror()
 /*                                                                           */
 /*****************************************************************************/
 
-void parsecommandline(argc, argv)
-int argc;
-char **argv;
+void parsecommandline(int argc, char **argv)
 {
 #ifdef TRILIBRARY
 #define STARTINDEX 0
@@ -3911,8 +3910,7 @@ void triangledeinit()
 /*                                                                           */
 /*****************************************************************************/
 
-void maketriangle(newtriedge)
-struct triedge *newtriedge;
+void maketriangle(struct triedge *newtriedge)
 {
   int i;
 
