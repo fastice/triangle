@@ -1151,6 +1151,7 @@ int minus1mod3[3] = {2, 0, 1};
 /*  syntax()   Print list of command line switches.                          */
 /*                                                                           */
 /*****************************************************************************/
+#ifdef TRILIBRARY
 void maketriangle(struct triedge *newtriedge);
 void makeshelle(struct edge *newedge);
 void exactinit();
@@ -1250,7 +1251,11 @@ void shelledealloc(shelle *dyingshelle);
 void pointdealloc(point dyingpoint); 
 void badsegmentdealloc(struct edge *dyingseg);
 point getpoint(int number);
-
+int formskeleton(int *segmentlist, int *segmentmarkerlist, int numberofsegments);
+void transfernodes(REAL *pointlist, REAL *pointattriblist, int *pointmarkerlist,
+                   int numberofpoints, int numberofpointattribs);
+void writenodes(REAL **pointlist, REAL **pointattriblist, int **pointmarkerlist);
+#endif
 #ifndef TRILIBRARY
 
 void syntax()
@@ -9828,18 +9833,11 @@ void markhull()
 /*****************************************************************************/
 
 #ifdef TRILIBRARY
-
-int formskeleton(segmentlist, segmentmarkerlist, numberofsegments)
-int *segmentlist;
-int *segmentmarkerlist;
-int numberofsegments;
-
+int formskeleton(int *segmentlist, int *segmentmarkerlist, int numberofsegments)
 #else /* not TRILIBRARY */
-
 int formskeleton(polyfile, polyfilename)
 FILE *polyfile;
 char *polyfilename;
-
 #endif /* not TRILIBRARY */
 
 {
@@ -11356,14 +11354,8 @@ FILE **polyfile;
 /*****************************************************************************/
 
 #ifdef TRILIBRARY
-
-void transfernodes(pointlist, pointattriblist, pointmarkerlist, numberofpoints,
-                   numberofpointattribs)
-REAL *pointlist;
-REAL *pointattriblist;
-int *pointmarkerlist;
-int numberofpoints;
-int numberofpointattribs;
+void transfernodes(REAL *pointlist, REAL *pointattriblist, int *pointmarkerlist,
+  int numberofpoints, int numberofpointattribs)
 {
   point pointloop;
   REAL x, y;
@@ -11574,21 +11566,13 @@ void finishfile(FILE *outfile, int argc, char **argv)
 /*****************************************************************************/
 
 #ifdef TRILIBRARY
-
-void writenodes(pointlist, pointattriblist, pointmarkerlist)
-REAL **pointlist;
-REAL **pointattriblist;
-int **pointmarkerlist;
-
+void writenodes(REAL **pointlist, REAL **pointattriblist, int **pointmarkerlist)
 #else /* not TRILIBRARY */
-
 void writenodes(nodefilename, argc, argv)
 char *nodefilename;
 int argc;
 char **argv;
-
 #endif /* not TRILIBRARY */
-
 {
 #ifdef TRILIBRARY
   REAL *plist;
