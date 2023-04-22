@@ -1244,6 +1244,12 @@ void *poolalloc(struct memorypool *pool);
 void pooldealloc(struct memorypool *pool, VOID *dyingitem);
 void traversalinit(struct memorypool *pool);
 VOID *traverse(struct memorypool *pool);
+void dummyinit(int trianglewords, int shellewords);
+void triangledealloc(triangle *dyingtriangle);
+void shelledealloc(shelle *dyingshelle);
+void pointdealloc(point dyingpoint); 
+void badsegmentdealloc(struct edge *dyingseg);
+point getpoint(int number);
 
 #ifndef TRILIBRARY
 
@@ -3510,9 +3516,7 @@ VOID *traverse(struct memorypool *pool)
 /*                                                                           */
 /*****************************************************************************/
 
-void dummyinit(trianglewords, shellewords)
-int trianglewords;
-int shellewords;
+void dummyinit(int trianglewords, int shellewords)
 {
   unsigned long alignptr;
 
@@ -3680,8 +3684,7 @@ void initializetrisegpools()
 /*                                                                           */
 /*****************************************************************************/
 
-void triangledealloc(dyingtriangle)
-triangle *dyingtriangle;
+void triangledealloc(triangle *dyingtriangle)
 {
   /* Set triangle's vertices to NULL.  This makes it possible to        */
   /*   detect dead triangles when traversing the list of all triangles. */
@@ -3716,8 +3719,7 @@ triangle *triangletraverse()
 /*                                                                           */
 /*****************************************************************************/
 
-void shelledealloc(dyingshelle)
-shelle *dyingshelle;
+void shelledealloc(shelle *dyingshelle)
 {
   /* Set shell edge's vertices to NULL.  This makes it possible to */
   /*   detect dead shells when traversing the list of all shells.  */
@@ -3751,8 +3753,7 @@ shelle *shelletraverse()
 /*                                                                           */
 /*****************************************************************************/
 
-void pointdealloc(dyingpoint)
-point dyingpoint;
+void pointdealloc(point dyingpoint)
 {
   /* Mark the point as dead.  This makes it possible to detect dead points */
   /*   when traversing the list of all points.                             */
@@ -3788,8 +3789,8 @@ point pointtraverse()
 
 #ifndef CDT_ONLY
 
-void badsegmentdealloc(dyingseg)
-struct edge *dyingseg;
+void badsegmentdealloc(struct edge *dyingseg)
+
 {
   /* Set segment's orientation to -1.  This makes it possible to      */
   /*   detect dead segments when traversing the list of all segments. */
@@ -3834,8 +3835,7 @@ struct edge *badsegmenttraverse()
 /*                                                                           */
 /*****************************************************************************/
 
-point getpoint(number)
-int number;
+point getpoint(int number)
 {
   VOID **getblock;
   point foundpoint;
